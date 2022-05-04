@@ -7,18 +7,15 @@ export const createTables = () => connection.raw(`
 		hobby_id VARCHAR(255) PRIMARY KEY,
 		hobby_name VARCHAR(255) NOT NULL UNIQUE
 	);
-
 	CREATE TABLE IF NOT EXISTS classes (
 		class_id VARCHAR(255) PRIMARY KEY,
 		class_name VARCHAR(255) NOT NULL,
 		class_module INT NOT NULL
 	);
-
 	CREATE TABLE IF NOT EXISTS specialties (
 		specialty_id VARCHAR(255) PRIMARY KEY,
 		specialty_name VARCHAR(255) NOT NULL UNIQUE
 	);
-
 	CREATE TABLE IF NOT EXISTS teachers(
 		teacher_id VARCHAR(255) PRIMARY KEY,
 		teacher_name VARCHAR(255) NOT NULL,
