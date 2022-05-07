@@ -24,14 +24,12 @@ export const createTables = () => connection.raw(`
 		teacher_class_id VARCHAR(255),
 		FOREIGN KEY (teacher_class_id) REFERENCES classes (class_id)
 	);
-
 	CREATE TABLE IF NOT EXISTS teacher_specialties (
 		teacher_specialties_id VARCHAR(255) PRIMARY KEY,
 		specialty_id VARCHAR(255) NOT NULL,
 		teacher_id VARCHAR(255) NOT NULL,
 		FOREIGN KEY (teacher_id) REFERENCES teachers (teacher_id)
 	);
-
 	CREATE TABLE IF NOT EXISTS students (
 		student_id VARCHAR(255) PRIMARY KEY,
 		student_name VARCHAR(255) NOT NULL,
