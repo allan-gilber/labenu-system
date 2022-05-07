@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/index.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev ./src/index.ts",
+    "migration": "ts-node-dev ./src/migration/index.ts",
+    "test2": "ts-node-dev ./src/migration/index.ts"
   },
   "repository": {
     "type": "git",
@@ -29,7 +35,7 @@
     "eslint": "^8.14.0",
     "eslint-plugin-react": "^7.29.4",
     "express": "^4.18.1",
-    "knex": "^2.0.0",
+    "knex": "^1.0.7",
     "mysql": "^2.18.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4"
