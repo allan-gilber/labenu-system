@@ -3,6 +3,8 @@ import cors from 'cors';
 import { AddressInfo } from 'net';
 import connection from './connection';
 import { Request, Response } from 'express';
+import createClass from './endpoints/createClass';
+import getActiveClasses from './endpoints/getActiveClasses';
 
 const app = express();
 
@@ -17,3 +19,7 @@ const server = app.listen(process.env.PORT || 3003, () => {
 		console.error('Failure upon starting server.');
 	}
 });
+
+app.post('/createClass', createClass);
+
+app.get('/getActiveClasses', getActiveClasses);
