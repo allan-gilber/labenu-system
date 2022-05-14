@@ -5,6 +5,7 @@ import connection from './connection';
 import { Request, Response } from 'express';
 import createClass from './endpoints/createClass';
 import getActiveClasses from './endpoints/getActiveClasses';
+import changeClassModule from './endpoints/changeClassModule';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 const server = app.listen(process.env.PORT || 3003, () => {
 	if (server) {
+		console.clear();
 		const address = server.address() as AddressInfo;
 		console.log(`Server is running in http://localhost:${address.port}`);
 	} else {
@@ -20,6 +22,8 @@ const server = app.listen(process.env.PORT || 3003, () => {
 	}
 });
 
-app.post('/createClass', createClass);
+app.post('/classes/createClass', createClass);
 
-app.get('/getActiveClasses', getActiveClasses);
+app.get('/classes/getActiveClasses', getActiveClasses);
+
+app.put('/classes/changeClassModule/:classId', changeClassModule);
