@@ -1,16 +1,11 @@
 export class Class {
 	classId: string;
-	name: string;
-	teachers: string;
-	students: string;
-	module: string;
+	name?: string;
+	module = '0';
 
-	constructor(classId: string, name: string, teachers: string, students: string,  module: string){
+	constructor(classId: string, name: string){
 		this.classId = classId;
 		this.name = name;
-		this.teachers = teachers;
-		this.students = students;
-		this.module = module;
 	}
 }
 
