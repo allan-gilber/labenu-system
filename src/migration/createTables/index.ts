@@ -1,50 +1,81 @@
 import connection from '../../connection';
 
 
+function createHobbiesTable ():Promise<void> {
+	console.log('');
+	return connection.schema.createTable('hobbies', (table) =>{
+		table.string('hobby_id').primary();
+		table.string('hobby_name').notNullable().unique();
+	});
+}
 
-export const createTables = () => connection.raw(`
-	CREATE TABLE IF NOT EXISTS hobbies(
-		hobby_id VARCHAR(255) PRIMARY KEY,
-		hobby_name VARCHAR(255) NOT NULL UNIQUE
-	);
-	CREATE TABLE IF NOT EXISTS classes (
-		class_id VARCHAR(255) PRIMARY KEY,
-		class_name VARCHAR(255) NOT NULL,
-		class_module INT NOT NULL
-	);
-	CREATE TABLE IF NOT EXISTS specialties (
-		specialty_id VARCHAR(255) PRIMARY KEY,
-		specialty_name VARCHAR(255) NOT NULL UNIQUE
-	);
-	CREATE TABLE IF NOT EXISTS teachers(
-		teacher_id VARCHAR(255) PRIMARY KEY,
-		teacher_name VARCHAR(255) NOT NULL,
-		teacher_email VARCHAR(255) NOT NULL UNIQUE,
-		teacher_birth_date DATE NOT NULL,
-		teacher_class_id VARCHAR(255),
-		FOREIGN KEY (teacher_class_id) REFERENCES classes (class_id)
-	);
-	CREATE TABLE IF NOT EXISTS teacher_specialties (
-		teacher_specialties_id VARCHAR(255) PRIMARY KEY,
-		specialty_id VARCHAR(255) NOT NULL,
-		teacher_id VARCHAR(255) NOT NULL,
-		FOREIGN KEY (teacher_id) REFERENCES teachers (teacher_id)
-	);
-	CREATE TABLE IF NOT EXISTS students (
-		student_id VARCHAR(255) PRIMARY KEY,
-		student_name VARCHAR(255) NOT NULL,
-		student_email VARCHAR(255) NOT NULL UNIQUE,
-		student_birth_date DATE NOT NULL,
-		class_id VARCHAR(255),
-		FOREIGN KEY (class_id) REFERENCES classes (class_id)
-	);
+function createClassTable ():Promise<void> {
+	console.log('');
+	return connection.schema.createTable('classes', (table) =>{
+		table.string('class_id').primary();
+		table.string('class_name').unique().notNullable();
+		table.integer('class_module').notNullable().defaultTo(0).checkBetween([0,6]);
+	});
+}
 
-	CREATE TABLE IF NOT EXISTS student_hobbies (
-		student_hobbies_id VARCHAR(255) PRIMARY KEY,
-		student_id VARCHAR(255) NOT NULL,
-		hobby_id VARCHAR(255) NOT NULL,
-		FOREIGN KEY (student_id) REFERENCES students (student_id),
-		FOREIGN KEY (hobby_id) REFERENCES hobbies (hobby_id)
-	);
-`)
-	.then(() => { console.log('Tabelas criadas'); });
+function createSpecialtiesTable ():Promise<void> {
+	console.log('');
+	return connection.schema.createTable('specialties', (table) =>{
+		table.string('specialty_id').primary();
+		table.string('specialty_name').unique().notNullable();
+	});
+}
+
+function createTeachersTable ():Promise<void> {
+	console.log('');
+	return connection.schema.createTable('teachers', (table) =>{
+		table.string('teacher_id').primary();
+		table.string('teacher_name').unique().notNullable();
+		table.string('teacher_email').unique().notNullable();
+		table.date('teacher_birth_date').notNullable();
+		table.string('teacher_class_id').notNullable();
+		table.foreign('teacher_class_id').references('class_id').inTable('classes');
+	});
+}
+
+function createTeacherSpecialtiesTable ():Promise<void>{
+	return connection.schema.createTable('teacher_specialties', (table) =>{
+		table.string('teacher_specialties_id').primary();
+		table.string('specialty_id').notNullable().unique();
+		table.string('teacher_id').notNullable().unique();
+		table.foreign('teacher_id').references('teacher_id').inTable('teachers');
+	});
+}
+
+function createStudentsTable ():Promise<void>{
+	return connection.schema.createTable('students', (table) =>{
+		table.string('student_id').primary();
+		table.string('student_name').notNullable().unique();
+		table.string('student_email').notNullable().unique();
+		table.string('student_birth_date').notNullable().unique();
+		table.string('class_id').notNullable().unique();
+		table.foreign('class_id').references('class_id').inTable('classes');
+	});
+}
+
+function createStudentHobbiesTable ():Promise<void>{
+	return connection.schema.createTable('student_hobbies', (table) =>{
+		table.string('student_hobbies_id').primary();
+		table.string('student_id').notNullable().unique();
+		table.string('hobby_id').notNullable().unique();
+		table.foreign('hobby_id').references('hobby_id').inTable('hobbies');
+		table.foreign('student_id').references('student_id').inTable('students');
+	});
+}
+
+export const createTables = async () => {
+	console.clear();
+	console.log('Starting migration of table schema...');
+	await createHobbiesTable()
+		.then(createClassTable)
+		.then(createSpecialtiesTable)
+		.then(createTeachersTable)
+		.then(createTeacherSpecialtiesTable).then(createStudentsTable)
+		.then(createStudentHobbiesTable)
+		.then(() => console.log('Tabelas criadas'));
+};

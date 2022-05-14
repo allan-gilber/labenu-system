@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Class } from '../classes';
 import connection from '../connection';
 import errorMessages from '../utilities/errorMessages';
 
@@ -7,7 +8,6 @@ export default async function changeClassModule (
 	res: Response
 ): Promise<void> {
 	try {
-
 		const classIdNumber = Number(req.params.classId);
 		const moduleNumber = Number(req.body.classModule);
 

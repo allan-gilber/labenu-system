@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import connection from './connection';
-import { Request, Response } from 'express';
 import createClass from './endpoints/createClass';
 import getActiveClasses from './endpoints/getActiveClasses';
 import changeClassModule from './endpoints/changeClassModule';

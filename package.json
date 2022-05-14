@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node ./src/index.ts",
+    "start": "ts-node-dev ./src/index.ts",
     "build": "tsc",
     "dev": "ts-node-dev ./src/index.ts",
     "migration": "ts-node-dev ./src/migration/index.ts",
@@ -37,10 +37,9 @@
     "express": "^4.18.1",
     "knex": "^1.0.7",
     "mysql": "^2.18.1",
+    "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4"
   },
-  "dependencies": {
-    "ts-node": "^10.7.0"
-  }
+  "dependencies": {}
 }
