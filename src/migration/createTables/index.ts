@@ -52,8 +52,8 @@ function createStudentsTable ():Promise<void>{
 		table.string('student_id').primary();
 		table.string('student_name').notNullable().unique();
 		table.string('student_email').notNullable().unique();
-		table.string('student_birth_date').notNullable().unique();
-		table.string('class_id').notNullable().unique();
+		table.string('student_birth_date').notNullable();
+		table.string('class_id').notNullable();
 		table.foreign('class_id').references('class_id').inTable('classes');
 	});
 }
@@ -61,8 +61,8 @@ function createStudentsTable ():Promise<void>{
 function createStudentHobbiesTable ():Promise<void>{
 	return connection.schema.createTable('student_hobbies', (table) =>{
 		table.string('student_hobbies_id').primary();
-		table.string('student_id').notNullable().unique();
-		table.string('hobby_id').notNullable().unique();
+		table.string('student_id').notNullable();
+		table.string('hobby_id').notNullable();
 		table.foreign('hobby_id').references('hobby_id').inTable('hobbies');
 		table.foreign('student_id').references('student_id').inTable('students');
 	});
@@ -75,7 +75,8 @@ export const createTables = async () => {
 		.then(createClassTable)
 		.then(createSpecialtiesTable)
 		.then(createTeachersTable)
-		.then(createTeacherSpecialtiesTable).then(createStudentsTable)
+		.then(createTeacherSpecialtiesTable)
+		.then(createStudentsTable)
 		.then(createStudentHobbiesTable)
 		.then(() => console.log('Tabelas criadas'));
 };

@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { Class } from '../classes';
-import connection from '../connection';
-import errorMessages from '../utilities/errorMessages';
+import connection from '../../connection';
+import errorMessages from '../../utilities/errorMessages';
 
 export default async function changeClassModule (
 	req: Request,
