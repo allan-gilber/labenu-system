@@ -6,7 +6,9 @@ export default function errorMessages(errorCode: string): string {
 		emptyClassName: 'please, inform a valid class name.',
 		genericError: 'something has gone wrong with your request',
 		noActiveClassFound: 'no active class has been found.',
-		studentEmailAlreadyRegistered: 'the provided email has already been used.'
+		studentEmailAlreadyRegistered: 'the provided email has already been used.',
+		emptyStudentName: 'please, inform a valid student name.',
+		emptyAnswerForSearchStudentByName: 'no student found with the name provided.'
 	};
 	if(errorMessageObject[errorCode]){
 		return errorMessageObject[errorCode];

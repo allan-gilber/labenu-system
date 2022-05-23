@@ -4,7 +4,7 @@ import { Student } from '../../classes';
 import errorMessages from '../../utilities/errorMessages';
 import transactionToCreateNewStudent from './utility/transactionToCreateNewStudent';
 
-export default async function createStudent (
+export default async function getStudentByName (
 	req: Request,
 	res: Response
 ): Promise<void> {
@@ -21,15 +21,15 @@ export default async function createStudent (
 				res.status(200).send({message: `Student ${newStudent.name} successful created`});
 			});
 	} catch (error: any){
-		console.log('createStudent error: ', error.message);
+		console.log('getStudentByName error: ', error.message);
 		if(error.code === 'ER_DUP_ENTRY'){
-			res.status(400).send({message: `createStudent error: ${errorMessages('studentEmailAlreadyRegistered')}`});
+			res.status(400).send({message: `getStudentByName error: ${errorMessages('studentEmailAlreadyRegistered')}`});
 			return;
 		}
 		if(error === 'missingParamtersForStudent') {
-			res.status(400).send({message: `createStudent error: ${errorMessages('emptyClassName')}`});
+			res.status(400).send({message: `getStudentByName error: ${errorMessages('emptyClassName')}`});
 			return;
 		}
-		res.status(500).send({message: `createStudent error:  ${errorMessages('genericError')}`});
+		res.status(500).send({message: `getStudentByName error:  ${errorMessages('genericError')}`});
 	}
 }

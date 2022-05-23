@@ -10,10 +10,16 @@ const insertDummyClassesData = async () => {
 		.insert(dummyClassesData)
 		.then(() => console.log('Successful populated "classes" table.'));
 };
+const insertDummyStudentsData = async () => {
+	console.log('Populating "students" table...');
+	return await connection('students')
+		.insert(insertDummyStudentsData)
+		.then(() => console.log('Successful populated "students" table.'));
+};
 
 const closeConnection = () => connection.destroy();
 
 createTables()
-	.then(insertDummyClassesData)
+	.then(insertDummyClassesData).then(insertDummyStudentsData)
 	.catch((errorMessage) => printError(errorMessage))
 	.finally(closeConnection);
