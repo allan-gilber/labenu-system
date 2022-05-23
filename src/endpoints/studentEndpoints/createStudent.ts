@@ -1,44 +1,31 @@
 import { Request, Response } from 'express';
+import { nanoid } from 'nanoid';
 import { Student } from '../../classes';
-import connection from '../../connection';
 import errorMessages from '../../utilities/errorMessages';
-import convertArrayOfHobbiesIntoArrayOfObject from './convertArrayOfHobbiesIntoArrayOfObject';
+import transactionToCreateNewStudent from './utility/transactionToCreateNewStudent';
 
 export default async function createStudent (
 	req: Request,
 	res: Response
 ): Promise<void> {
-	const studentId = Date.now().toString();
-	const hobbiesID = Date.now().toString();
-
-	const studentHobbiesArray: object[] = await convertArrayOfHobbiesIntoArrayOfObject(req.body.hobbies);
-
-	console.log(studentHobbiesArray);
 	try {
-		const newStudent = new Student(studentId, req.body.name,req.body.email,req.body.birthDate,req.body.classId, req.body.hobbies);
+		const requisitionBody = req.body;
 
-		if(!newStudent.name || !newStudent.email || !newStudent.hobbies || !newStudent.class_id) throw 'missingParamtersForStudent';
+		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.hobbies || !requisitionBody.classId) throw 'missingParamtersForStudent';
 
-		await connection.transaction(async transactionFunction => {
-			await transactionFunction('students').insert({
-				student_id: newStudent.student_id, 
-				student_name: newStudent.name, 
-				student_email: newStudent.email, 
-				student_birth_date: newStudent.birth_date, 
-				class_id: newStudent.class_id
+		const studentId = nanoid();
+		const newStudent = new Student(studentId, requisitionBody.name,requisitionBody.email,requisitionBody.birthDate,requisitionBody.classId, requisitionBody.hobbies);
+
+		await transactionToCreateNewStudent(newStudent, requisitionBody.hobbies, studentId)
+			.then(() => {
+				res.status(200).send({message: `Student ${newStudent.name} successful created`});
 			});
-			await transactionFunction('hobbies').insert(studentHobbiesArray);
-		})
-
-		// await connection('students').insert({student_id: newStudent.student_id, student_name: newStudent.name, student_email: newStudent.email, student_birth_date: newStudent.birth_date, class_id: newStudent.class_id})
-			.then((response: any) => {
-				console.log(response);
-				res.status(200).send({message: `Class ${newStudent.name} successful created`});
-			}).catch((error: any)=>{
-				throw error;
-			});
-	} catch (error){
-		console.log('createStudent error: ', error);
+	} catch (error: any){
+		console.log('createStudent error: ', error.message);
+		if(error.code === 'ER_DUP_ENTRY'){
+			res.status(400).send({message: `createStudent error: ${errorMessages('studentEmailAlreadyRegistered')}`});
+			return;
+		}
 		if(error === 'missingParamtersForStudent') {
 			res.status(400).send({message: `createStudent error: ${errorMessages('emptyClassName')}`});
 			return;

@@ -5,7 +5,8 @@ export default function errorMessages(errorCode: string): string {
 		classIdNotFoundOrModuleNotUpdated: 'no class was found with the Id provided or the module value was already set.',
 		emptyClassName: 'please, inform a valid class name.',
 		genericError: 'something has gone wrong with your request',
-		noActiveClassFound: 'no active class has been found.'
+		noActiveClassFound: 'no active class has been found.',
+		studentEmailAlreadyRegistered: 'the provided email has already been used.'
 	};
 	if(errorMessageObject[errorCode]){
 		return errorMessageObject[errorCode];

@@ -10,11 +10,9 @@ export default async function createClass (
 	const id = Date.now().toString();
 	try {
 		const newClass = new Class(id, req.body.className);
-		console.log(newClass.name);
 		if(!newClass.name) throw 'emptyClassName';
 		await connection('classes').insert({class_id: newClass.class_id, class_name: newClass.name, class_module: newClass.module})
-			.then((response: any) => {
-				console.log(response);
+			.then(() => {
 				res.status(200).send({message: `Class ${newClass.name} successful created`});
 			}).catch((error: any)=>{
 				throw error;

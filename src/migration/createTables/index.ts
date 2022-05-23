@@ -2,7 +2,6 @@ import connection from '../../connection';
 
 
 function createHobbiesTable ():Promise<void> {
-	console.log('');
 	return connection.schema.createTable('hobbies', (table) =>{
 		table.string('hobby_id').primary();
 		table.string('hobby_name').notNullable().unique();
@@ -10,7 +9,6 @@ function createHobbiesTable ():Promise<void> {
 }
 
 function createClassTable ():Promise<void> {
-	console.log('');
 	return connection.schema.createTable('classes', (table) =>{
 		table.string('class_id').primary();
 		table.string('class_name').unique().notNullable();
@@ -19,7 +17,6 @@ function createClassTable ():Promise<void> {
 }
 
 function createSpecialtiesTable ():Promise<void> {
-	console.log('');
 	return connection.schema.createTable('specialties', (table) =>{
 		table.string('specialty_id').primary();
 		table.string('specialty_name').unique().notNullable();
@@ -27,7 +24,6 @@ function createSpecialtiesTable ():Promise<void> {
 }
 
 function createTeachersTable ():Promise<void> {
-	console.log('');
 	return connection.schema.createTable('teachers', (table) =>{
 		table.string('teacher_id').primary();
 		table.string('teacher_name').unique().notNullable();
