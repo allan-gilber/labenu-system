@@ -17,8 +17,8 @@ export default async function createClass (
 			}).catch((error: any)=>{
 				throw error;
 			});
-	} catch (error){
-		console.log('createClass error: ', error);
+	} catch (error: any){
+		console.log('createClass error: ', error.message || error );
 		if(error === 'emptyClassName') {
 			res.status(400).send({message: `createClass error: ${errorMessages('emptyClassName')}`});
 			return;

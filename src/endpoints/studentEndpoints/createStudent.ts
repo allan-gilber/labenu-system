@@ -11,7 +11,7 @@ export default async function getStudentByName (
 	try {
 		const requisitionBody = req.body;
 
-		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.hobbies || !requisitionBody.classId) throw 'missingParamtersForStudent';
+		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.hobbies || !requisitionBody.classId) throw 'missingParamtersForStudentForStudentCreation';
 
 		const studentId = nanoid();
 		const newStudent = new Student(studentId, requisitionBody.name,requisitionBody.email,requisitionBody.birthDate,requisitionBody.classId, requisitionBody.hobbies);
@@ -21,12 +21,12 @@ export default async function getStudentByName (
 				res.status(200).send({message: `Student ${newStudent.name} successful created`});
 			});
 	} catch (error: any){
-		console.log('getStudentByName error: ', error.message);
+		console.log('getStudentByName error: ', error.message || error);
 		if(error.code === 'ER_DUP_ENTRY'){
 			res.status(400).send({message: `getStudentByName error: ${errorMessages('studentEmailAlreadyRegistered')}`});
 			return;
 		}
-		if(error === 'missingParamtersForStudent') {
+		if(error === 'missingParamtersForStudentForStudentCreation') {
 			res.status(400).send({message: `getStudentByName error: ${errorMessages('emptyClassName')}`});
 			return;
 		}

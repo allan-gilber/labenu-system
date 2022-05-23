@@ -10,7 +10,7 @@ export default async function getActiveClasses (
 		if(listOfActiveClasses.length === 0) throw 'noActiveClassFound';
 		res.status(200).send({message: 'successful', data: listOfActiveClasses });
 	} catch (error: any){
-		console.log('getActiveClasses error: ', error);
+		console.log('getActiveClasses error: ', error.message || error );
 		if(error === 'noActiveClassFound') {
 			res.status(404).send({message: `getActiveClasses error: ${errorMessages('noActiveClassFound')}`});
 			return;

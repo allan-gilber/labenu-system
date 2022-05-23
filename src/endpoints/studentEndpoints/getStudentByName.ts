@@ -13,7 +13,6 @@ export default async function getStudentByName (
 
 		await connection('students').select('*').where('student_name', '=', studentName)
 			.then((response: any) => {
-				console.log('resposta',response);
 				if(!response[0]) throw 'emptyAnswer';
 				res.status(200).send({
 					message: 'Succesfull',
@@ -21,7 +20,7 @@ export default async function getStudentByName (
 				});
 			});
 	} catch (error: any){
-		console.log('getStudentByName error: ', error.message);
+		console.log('getStudentByName error: ', error.message || error);
 		if(error === 'missingParamtersForStudentName') {
 			res.status(400).send({message: `getStudentByName error: ${errorMessages('emptyStudentName')}`});
 			return;

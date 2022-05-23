@@ -6,6 +6,7 @@ import getActiveClasses from './endpoints/classEndpoints/getActiveClasses';
 import changeClassModule from './endpoints/classEndpoints/changeClassModule';
 import createStudent from './endpoints/studentEndpoints/createStudent';
 import getStudentByName from './endpoints/studentEndpoints/getStudentByName';
+import changeStudentClass from './endpoints/studentEndpoints/changeStudentClass';
 
 const app = express();
 
@@ -30,3 +31,4 @@ app.get('/classes/getActiveClasses', getActiveClasses);
 app.get('/student/getStudentByName', getStudentByName);
 
 app.put('/classes/changeClassModule/:classId', changeClassModule);
+app.put('/student/changeStudentClass/:studentId',changeStudentClass);

@@ -19,7 +19,7 @@ export default async function changeClassModule (
 			});
 
 	} catch (error: any){
-		console.log('changeClassModule error: ', error);
+		console.log('changeClassModule error: ', error.message || error );
 		if(error === 'invalidClassModule') {
 			res.status(400).send({message: `changeClassModule error: ${errorMessages(error)}`});
 			return;

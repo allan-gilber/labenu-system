@@ -4,6 +4,7 @@ import connection from '../../../connection';
 
 async function transactionToCreateNewStudent (newStudent: Student, hobbies: string[], studentId: string) {
 	await connection.transaction(async (transaction: any) => {
+
 		await transaction('students').insert({
 			student_id: newStudent.student_id, 
 			student_name: newStudent.name, 
