@@ -1,27 +1,29 @@
 export class Class {
-	classId: string;
+	class_id: string;
 	name?: string;
 	module = '0';
 
-	constructor(classId: string, name: string){
-		this.classId = classId;
+	constructor(class_id: string, name: string){
+		this.class_id = class_id;
 		this.name = name;
 	}
 }
 
 export class Student {
-	studentId: string;
+	student_id: string;
 	name: string;
 	email: string;
-	turma_id: string;
+	birth_date: string;
+	class_id: string;
 	hobbies: string;
 
-	constructor(studentId: string, name: string, email: string, turma_id: string,  hobbies: string){
-		this.studentId = studentId;
+	constructor(student_id: string, name: string, email: string,birth_date: string, class_id: string,  hobbies: string){
+		this.student_id = student_id;
 		this.name = name;
 		this.email = email;
-		this.turma_id = turma_id;
+		this.class_id = class_id;
 		this.hobbies = hobbies;
+		this.birth_date = birth_date;
 	}
 }
 
@@ -30,15 +32,15 @@ export class Teacher {
 	name: string;
 	email: string;
 	birthday: string;
-	turma_id: string;
+	class_id: string;
 	specialty: string;
 
-	constructor(teacherId: string, name: string, email: string, birthday: string, turma_id: string,  specialty: string){
+	constructor(teacherId: string, name: string, email: string, birthday: string, class_id: string,  specialty: string){
 		this.teacherId = teacherId;
 		this.name = name;
 		this.email = email;
 		this.birthday = birthday;
-		this.turma_id = turma_id;
+		this.class_id = class_id;
 		this.specialty = specialty;
 	}
 }

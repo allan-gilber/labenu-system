@@ -1,9 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import { AddressInfo } from 'net';
-import createClass from './endpoints/createClass';
-import getActiveClasses from './endpoints/getActiveClasses';
-import changeClassModule from './endpoints/changeClassModule';
+import createClass from './endpoints/classEndpoints/createClass';
+import getActiveClasses from './endpoints/classEndpoints/getActiveClasses';
+import changeClassModule from './endpoints/classEndpoints/changeClassModule';
+import createStudent from './endpoints/studentEndpoints/createStudent';
+import getStudentByName from './endpoints/studentEndpoints/getStudentByName';
+import changeStudentClass from './endpoints/studentEndpoints/changeStudentClass';
 
 const app = express();
 
@@ -22,6 +25,10 @@ const server = app.listen(process.env.PORT || 3003, () => {
 
 app.post('/classes/createClass', createClass);
 
+app.post('/classes/createStudent', createStudent);
+
 app.get('/classes/getActiveClasses', getActiveClasses);
+app.get('/student/getStudentByName', getStudentByName);
 
 app.put('/classes/changeClassModule/:classId', changeClassModule);
+app.put('/student/changeStudentClass/:studentId',changeStudentClass);

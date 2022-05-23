@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { Class } from '../classes';
-import connection from '../connection';
-import errorMessages from '../utilities/errorMessages';
+import connection from '../../connection';
+import errorMessages from '../../utilities/errorMessages';
 
 export default async function changeClassModule (
 	req: Request,
@@ -20,7 +19,7 @@ export default async function changeClassModule (
 			});
 
 	} catch (error: any){
-		console.log('changeClassModule error: ', error);
+		console.log('changeClassModule error: ', error.message || error );
 		if(error === 'invalidClassModule') {
 			res.status(400).send({message: `changeClassModule error: ${errorMessages(error)}`});
 			return;

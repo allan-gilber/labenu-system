@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { Class } from '../classes';
-import connection from '../connection';
-import errorMessages from '../utilities/errorMessages';
+import { Class } from '../../classes';
+import connection from '../../connection';
+import errorMessages from '../../utilities/errorMessages';
 
 export default async function createClass (
 	req: Request,
@@ -10,17 +10,15 @@ export default async function createClass (
 	const id = Date.now().toString();
 	try {
 		const newClass = new Class(id, req.body.className);
-		console.log(newClass.name);
 		if(!newClass.name) throw 'emptyClassName';
-		await connection('classes').insert({class_id: newClass.classId, class_name: newClass.name, class_module: newClass.module})
-			.then((response) => {
-				console.log(response);
+		await connection('classes').insert({class_id: newClass.class_id, class_name: newClass.name, class_module: newClass.module})
+			.then(() => {
 				res.status(200).send({message: `Class ${newClass.name} successful created`});
-			}).catch((error)=>{
+			}).catch((error: any)=>{
 				throw error;
 			});
-	} catch (error){
-		console.log('createClass error: ', error);
+	} catch (error: any){
+		console.log('createClass error: ', error.message || error );
 		if(error === 'emptyClassName') {
 			res.status(400).send({message: `createClass error: ${errorMessages('emptyClassName')}`});
 			return;
