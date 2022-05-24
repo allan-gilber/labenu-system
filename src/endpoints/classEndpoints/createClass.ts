@@ -16,7 +16,7 @@ export default async function createClass (
 			.then(()=>{
 				connection('classes').select({class_id: newClass[0]});
 			}).then(() => {
-				res.status(200).send({message: `Class ${newClass[1]} successful created`});
+				res.status(200).send({message: `Class ${newClass[1]} successful created with the following id: ${newClass[0]}`});
 			}).catch((error: any)=>{
 				throw error;
 			});
