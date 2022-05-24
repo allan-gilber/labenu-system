@@ -46,7 +46,7 @@ function createTeacherSpecialtiesTable ():Promise<void>{
 function createStudentsTable ():Promise<void>{
 	return connection.schema.createTable('students', (table) =>{
 		table.string('student_id').primary();
-		table.string('student_name').notNullable().unique();
+		table.string('student_name').notNullable();
 		table.string('student_email').notNullable().unique();
 		table.string('student_birth_date').notNullable();
 		table.string('class_id').notNullable();

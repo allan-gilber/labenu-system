@@ -1,0 +1,65 @@
+[
+	"student_hobbies",
+	[
+		{
+			"student_hobbies_id": "1BfyfcVeKJiT_ejwk4CnW",
+			"student_id": "2uTSCbbAes7yilMbzRJtI",
+			"hobby_id": "Up7_tcL0szstGksWjzVE6"
+		},
+		{
+			"student_hobbies_id": "2Gc1SJBQ7Lleg-fn8D9rf",
+			"student_id": "gzIGRUP-a2fGZ_8-6h0MG",
+			"hobby_id": "wdTLuL1FRFD3NJgoy7HOk"
+		},
+		{
+			"student_hobbies_id": "64biYvo0CNvms2bmTBK__",
+			"student_id": "gzIGRUP-a2fGZ_8-6h0MG",
+			"hobby_id": "Up7_tcL0szstGksWjzVE6"
+		},
+		{
+			"student_hobbies_id": "b_rAVejWE5bwSiNCey_4o",
+			"student_id": "4byWeP2l0olFyQCUoy090",
+			"hobby_id": "Up7_tcL0szstGksWjzVE6"
+		},
+		{
+			"student_hobbies_id": "G-Pr3VOHPyYcLdrAUacqV",
+			"student_id": "Xt1Vfj0PPE2xDu16eaRoH",
+			"hobby_id": "wdTLuL1FRFD3NJgoy7HOk"
+		},
+		{
+			"student_hobbies_id": "imf8cY2AwOqP9vZOT56QA",
+			"student_id": "Xt1Vfj0PPE2xDu16eaRoH",
+			"hobby_id": "Up7_tcL0szstGksWjzVE6"
+		},
+		{
+			"student_hobbies_id": "k6siAG1fP5MtBFG5lp4zd",
+			"student_id": "Xt1Vfj0PPE2xDu16eaRoH",
+			"hobby_id": "p5dLUezgCqWgknXy3db8t"
+		},
+		{
+			"student_hobbies_id": "Kh5KLW1HwARHhW3yWyMJU",
+			"student_id": "gzIGRUP-a2fGZ_8-6h0MG",
+			"hobby_id": "p5dLUezgCqWgknXy3db8t"
+		},
+		{
+			"student_hobbies_id": "Oq5EcaACOwObbw3aUtmsC",
+			"student_id": "4byWeP2l0olFyQCUoy090",
+			"hobby_id": "wdTLuL1FRFD3NJgoy7HOk"
+		},
+		{
+			"student_hobbies_id": "qdcl-O4JPi4Wsx_SVVcYW",
+			"student_id": "2uTSCbbAes7yilMbzRJtI",
+			"hobby_id": "wdTLuL1FRFD3NJgoy7HOk"
+		},
+		{
+			"student_hobbies_id": "S0jYd0R79ocSsKAbxmaZP",
+			"student_id": "4byWeP2l0olFyQCUoy090",
+			"hobby_id": "p5dLUezgCqWgknXy3db8t"
+		},
+		{
+			"student_hobbies_id": "XC6pprDag5jVwAslFEknw",
+			"student_id": "2uTSCbbAes7yilMbzRJtI",
+			"hobby_id": "p5dLUezgCqWgknXy3db8t"
+		}
+	]
+]

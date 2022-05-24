@@ -11,12 +11,12 @@ export default async function createStudent (
 	try {
 		const requisitionBody = req.body;
 
-		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.teacher_birth_date || !requisitionBody.hobbies || !requisitionBody.classId) throw 'missingParamtersForStudentForStudentCreation';
+		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.birthDate || !requisitionBody.hobbies || !requisitionBody.classId) throw 'missingParamtersForStudentForStudentCreation';
 
 		const studentId = nanoid();
 		const newStudent = new Student(studentId, requisitionBody.name,requisitionBody.email,requisitionBody.birthDate,requisitionBody.classId, requisitionBody.hobbies);
 
-		await transactionToCreateNewStudent(newStudent, requisitionBody.hobbies, studentId)
+		await transactionToCreateNewStudent(newStudent.getStudentData())
 			.then(() => {
 				res.status(200).send({message: `Student ${newStudent.name} successful created`});
 			});
