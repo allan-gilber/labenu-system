@@ -6,13 +6,12 @@ async function checkIfStudentAndClassIdsAreCorrect (studentId: string, classId: 
 		if(!response[0]?.student_id){
 			throw 'invalidStudentId';
 		}
+		if(response[0]?.class_id === classId) throw 'studentAlreadyInIndicatedClass';
 		return;
 	});
 
 	const checkIfTheClassIdIsCorrect = connection('classes').select('class_id').where({'class_id': classId}).then(async (response: any) => {
 		if(!response[0]?.class_id) throw 'invalidClassId';
-		if(response[0]?.class_id === classId) throw 'studentAlreadyInIndicatedClass';
-
 		return;
 	});
 

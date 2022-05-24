@@ -17,12 +17,12 @@ async function transactionToCreateNewTeacher (teacherData: Teacher) {
 
 		const teacherSpecialties = teacherData.getSpecialtiesList();
 		for(let index = 0; index < teacherSpecialties.length; index++){
-			await connection('specialties').select('*').where('specialty_name', '=', teacherSpecialties[index]).then(async (response: any) => {
+			await connection('specialties').select('*').where({'specialty_name': teacherSpecialties[index]}).then(async (response: any) => {
 				const teacherSpecialtyId = nanoid();
 				if(response[0]?.specialty_id){
 					await transaction('teacher_specialties').insert({
 						teacher_specialties_id: teacherSpecialtyId,
-						specialty_id: response[0],
+						specialty_id: response[0].specialty_id,
 						teacher_id: teacherInfo[0]
 					});
 					return;

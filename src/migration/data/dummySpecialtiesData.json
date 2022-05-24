@@ -2,8 +2,24 @@
 	"specialties",
 	[
 		{
+			"specialty_id": "asW8j70oFUrP9LeBRSTY-",
+			"specialty_name": "CSS"
+		},
+		{
+			"specialty_id": "Vn8fhRKzlKc5NXM82kCJj",
+			"specialty_name": "JavaScript"
+		},
+		{
 			"specialty_id": "yU9NipCw6_xQQxFl5RW5S",
 			"specialty_name": "POO (Programação Orientada a Objetos)"
+		},
+		{
+			"specialty_id": "c3YXnRDy6PYgN99DTDCkm",
+			"specialty_name": "React.js"
+		},
+		{
+			"specialty_id": "aMME2GSPhFZXAoAk-3d1u",
+			"specialty_name": "TypeScript"
 		}
 	]
 ]
