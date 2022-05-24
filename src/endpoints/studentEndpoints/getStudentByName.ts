@@ -8,7 +8,6 @@ export default async function getStudentByName (
 ): Promise<void> {
 	try {
 		const studentName = req.body.studentName;
-		console.log(req.body.studentName);
 		if(!studentName) throw 'missingParamtersForStudentName';
 
 		await connection('students').select('*').where('student_name', '=', studentName)

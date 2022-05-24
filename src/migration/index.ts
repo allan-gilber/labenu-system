@@ -1,32 +1,36 @@
 import connection from '../connection';
-import  dummyClassesData from './data/dummyClassesData.json';
+import dummyClassesData from './data/dummyClassesData.json';
+import dummyHobbieData from './data/dummyHobbieData.json';
+import dummySpecialtiesData from './data/dummySpecialtiesData.json';
+import dummyStudentsData from './data/dummyStudentsData.json';
+import dummyStudentsHobbiesData from './data/dummyStudentsHobbiesData.json';
+import dummyTeachersSpecialtiesData from './data/dummyTeachersSpecialtiesData.json';
+import dummyTeachersData from './data/dummyTeachersData.json';
+
 import { createTables } from './createTables';
 
 const printError = (error: any) => console.log(error.sqlMessage || error.message || error || error);
 
-const insertDummyClassesData = async () => {
-	console.log('Populating "classes" table...');
-	return await connection('classes')
-		.insert(dummyClassesData)
-		.then(() => console.log('Successful populated "classes" table.'));
-};
-const insertDummyStudentsData = async () => {
-	console.log('Populating "students" table...');
-	return await connection('students')
-		.insert(insertDummyStudentsData)
-		.then(() => console.log('Successful populated "students" table.'));
-};
-};
-const insertDummyHobbiesData = async () => {
-	console.log('Populating "hobbies" table...');
-	return await connection('hobbies')
-		.insert(insertDummyHobbiesData)
-		.then(() => console.log('Successful populated "hobbies" table.'));
+const insertDummydata = async (dataArray: any) => {
+	return connection.transaction(async (transaction: any) => {
+		for(let index = 0; index < dataArray.length; index++){
+			console.log(`Populating "${dataArray[index][0]}" table...`);
+			await transaction(dataArray[index][0])
+				.insert(dataArray[index][1])
+				.then(() => console.log(`Successful populated "${dataArray[index][0]}" table.`));
+		}
+	});
 };
 
 const closeConnection = () => connection.destroy();
 
-createTables()
-	.then(insertDummyClassesData).then(insertDummyStudentsData).then(insertDummyHobbiesData)
-	.catch((errorMessage) => printError(errorMessage))
+createTables().then(() => insertDummydata([
+	dummyHobbieData,
+	dummyClassesData,
+	dummySpecialtiesData,
+	dummyTeachersData,
+	dummyTeachersSpecialtiesData,
+	dummyStudentsData,
+	dummyStudentsHobbiesData
+])).catch((errorMessage) => printError(errorMessage))
 	.finally(closeConnection);

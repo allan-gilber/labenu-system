@@ -7,6 +7,7 @@ import changeClassModule from './endpoints/classEndpoints/changeClassModule';
 import createStudent from './endpoints/studentEndpoints/createStudent';
 import getStudentByName from './endpoints/studentEndpoints/getStudentByName';
 import changeStudentClass from './endpoints/studentEndpoints/changeStudentClass';
+import createTeacher from './endpoints/teacherEndpoints/createTeacher';
 
 const app = express();
 
@@ -24,8 +25,8 @@ const server = app.listen(process.env.PORT || 3003, () => {
 });
 
 app.post('/classes/createClass', createClass);
-
-app.post('/classes/createStudent', createStudent);
+app.post('/student/createStudent', createStudent);
+app.post('/teachers/createTeacher', createTeacher);
 
 app.get('/classes/getActiveClasses', getActiveClasses);
 app.get('/student/getStudentByName', getStudentByName);

@@ -1,67 +1,70 @@
 [
-    {
-        "class_id": "1652491319159",
-        "class_name": "DummyClass",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652491577997",
-        "class_name": "DumbClass",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652389239836",
-        "class_name": "FirstClass",
-        "class_module": 3
-    },
-    {
-        "class_id": "1652384239831",
-        "class_name": "SecondClass",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652392964656",
-        "class_name": "ThirdClass",
-        "class_module": 4
-    },
-    {
-        "class_id": "1652392947096",
-        "class_name": "FourthClass",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652392960338",
-        "class_name": "TesteClass1",
-        "class_module": 4
-    },
-    {
-        "class_id": "1652479407927",
-        "class_name": "TesteClass2",
-        "class_module": 4
-    },
-    {
-        "class_id": "1652491600174",
-        "class_name": "TesteClass3",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652491988560",
-        "class_name": "TesteClass4",
-        "class_module": 1
-    },
-    {
-        "class_id": "1652492007791",
-        "class_name": "TesteClass5",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652492012699",
-        "class_name": "TesteClass6",
-        "class_module": 0
-    },
-    {
-        "class_id": "1652493079588",
-        "class_name": "TesteClass7",
-        "class_module": 0
-    }
+    "classes",
+    [
+        {
+            "class_id": "1652491319159",
+            "class_name": "DummyClass",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652491577997",
+            "class_name": "DumbClass",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652389239836",
+            "class_name": "FirstClass",
+            "class_module": 3
+        },
+        {
+            "class_id": "1652384239831",
+            "class_name": "SecondClass",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652392964656",
+            "class_name": "ThirdClass",
+            "class_module": 4
+        },
+        {
+            "class_id": "1652392947096",
+            "class_name": "FourthClass",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652392960338",
+            "class_name": "TesteClass1",
+            "class_module": 4
+        },
+        {
+            "class_id": "1652479407927",
+            "class_name": "TesteClass2",
+            "class_module": 4
+        },
+        {
+            "class_id": "1652491600174",
+            "class_name": "TesteClass3",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652491988560",
+            "class_name": "TesteClass4",
+            "class_module": 1
+        },
+        {
+            "class_id": "1652492007791",
+            "class_name": "TesteClass5",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652492012699",
+            "class_name": "TesteClass6",
+            "class_module": 0
+        },
+        {
+            "class_id": "1652493079588",
+            "class_name": "TesteClass7",
+            "class_module": 0
+        }
+    ]
 ]
