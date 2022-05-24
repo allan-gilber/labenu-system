@@ -26,7 +26,7 @@ function createSpecialtiesTable ():Promise<void> {
 function createTeachersTable ():Promise<void> {
 	return connection.schema.createTable('teachers', (table) =>{
 		table.string('teacher_id').primary();
-		table.string('teacher_name').unique().notNullable();
+		table.string('teacher_name').notNullable();
 		table.string('teacher_email').unique().notNullable();
 		table.date('teacher_birth_date').notNullable();
 		table.string('teacher_class_id').notNullable();
@@ -37,9 +37,10 @@ function createTeachersTable ():Promise<void> {
 function createTeacherSpecialtiesTable ():Promise<void>{
 	return connection.schema.createTable('teacher_specialties', (table) =>{
 		table.string('teacher_specialties_id').primary();
-		table.string('specialty_id').notNullable().unique();
-		table.string('teacher_id').notNullable().unique();
+		table.string('specialty_id').notNullable();
+		table.string('teacher_id').notNullable();
 		table.foreign('teacher_id').references('teacher_id').inTable('teachers');
+		table.foreign('specialty_id').references('specialty_id').inTable('specialties');
 	});
 }
 
@@ -49,8 +50,8 @@ function createStudentsTable ():Promise<void>{
 		table.string('student_name').notNullable();
 		table.string('student_email').notNullable().unique();
 		table.string('student_birth_date').notNullable();
-		table.string('class_id').notNullable();
-		table.foreign('class_id').references('class_id').inTable('classes');
+		table.string('student_class_id').notNullable();
+		table.foreign('student_class_id').references('class_id').inTable('classes');
 	});
 }
 

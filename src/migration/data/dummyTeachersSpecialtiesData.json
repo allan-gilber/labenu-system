@@ -2,9 +2,34 @@
 	"teacher_specialties",
 	[
 		{
+			"teacher_specialties_id": "1_FK9afVZ6ZtZROUgXQfH",
+			"specialty_id": "aMME2GSPhFZXAoAk-3d1u",
+			"teacher_id": "llU7KBXiokFU_m6QEvdfy"
+		},
+		{
+			"teacher_specialties_id": "jF4GSd_zCv1f5pIQJ1L_X",
+			"specialty_id": "Vn8fhRKzlKc5NXM82kCJj",
+			"teacher_id": "llU7KBXiokFU_m6QEvdfy"
+		},
+		{
+			"teacher_specialties_id": "jy3pXCXxD94qpzAM2ZZG4",
+			"specialty_id": "c3YXnRDy6PYgN99DTDCkm",
+			"teacher_id": "llU7KBXiokFU_m6QEvdfy"
+		},
+		{
+			"teacher_specialties_id": "mmyE9-rUTJPj27v9njUnw",
+			"specialty_id": "yU9NipCw6_xQQxFl5RW5S",
+			"teacher_id": "llU7KBXiokFU_m6QEvdfy"
+		},
+		{
 			"teacher_specialties_id": "NS_cDOtSjjpOIEKncmsVt",
 			"specialty_id": "yU9NipCw6_xQQxFl5RW5S",
 			"teacher_id": "qWM9gJBvHUbRhHCQWhVdL"
+		},
+		{
+			"teacher_specialties_id": "X1Y4cDHF9v26CuzJWQbgv",
+			"specialty_id": "asW8j70oFUrP9LeBRSTY-",
+			"teacher_id": "llU7KBXiokFU_m6QEvdfy"
 		}
 	]
 ]
