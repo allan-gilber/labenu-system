@@ -32,5 +32,5 @@ createTables().then(() => insertDummydata([
 	dummyTeachersSpecialtiesData,
 	dummyStudentsData,
 	dummyStudentsHobbiesData
-])).catch((errorMessage) => printError(errorMessage))
+])).then(()=> console.log('Succesful finished database migration and population.')).catch((errorMessage) => printError(errorMessage))
 	.finally(closeConnection);

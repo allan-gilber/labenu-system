@@ -1,11 +1,12 @@
 export class Class {
-	class_id: string;
-	name?: string;
-	module = '0';
 
-	constructor(class_id: string, name: string){
+	constructor(private class_id: string, private name: string, private module = '0'){
 		this.class_id = class_id;
 		this.name = name;
+	}
+
+	public getClassData(): string[]{
+		return [this.class_id, this.name, this.module];
 	}
 }
 
