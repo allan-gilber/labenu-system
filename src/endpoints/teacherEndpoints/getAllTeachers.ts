@@ -8,10 +8,10 @@ export default async function getAllTeachers (
 ): Promise<void> {
 	try {
 		await connection('teachers').select('*').then((response: any) => {
-			if(!response[0]) throw 'emptyAnswer';
+			if(response.length === 0) throw 'emptyAnswer';
 			res.status(200).send({
 				message: 'Succesfull',
-				data: response[0]
+				data: response
 			});
 		});
 	} catch (error: any){

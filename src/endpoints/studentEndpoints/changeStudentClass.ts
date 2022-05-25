@@ -10,25 +10,26 @@ export default async function changeStudentClass (
 	try {
 		const studentId = req.params.studentId;
 		const classId = req.body.classId;
+		let className: string;
 
-		if(!classId) throw 'invalidClassId';
 		if(!studentId) throw 'invalidStudentId';
+		if(!classId) throw 'invalidClassId';
 
 		await checkIfStudentAndClassIdsAreCorrect(studentId, classId)
-			.then(async () =>{
-				await connection('students').where({'student_id': studentId}).update({'class_id': classId});
+			.then(async (response: string) =>{
+				className = response;
+				await connection('students').where({'student_id': studentId}).update({'student_class_id': classId});
 			})
 			.then(() => {
-				res.status(200).send({message: `Class module successful changed to: ${studentId}`});
+				res.status(200).send({message: `Student class successful changed to: ${className}`});
 			});
-
-	} catch (error: any){
-		console.log('changeStudentClass error: ', error.message || error );
-		if(error === 'invalidStudentId') {
+	}catch (error: any){
+		console.log('changeStudentClass error: ', error.message || error);
+		if(error === 'invalidStudentId'){
 			res.status(400).send({message: `changeStudentClass error: ${errorMessages(error)}`});
 			return;
 		}
-		if(error === 'invalidClassId') {
+		if(error === 'invalidClassId'){
 			res.status(400).send({message: `changeStudentClass error: ${errorMessages(error)}`});
 			return;
 		}

@@ -13,9 +13,7 @@ export default async function createClass (
 		if(!req.body.className) throw 'emptyClassName';
 		const newClass = new Class(classId, req.body.className).getClassData();
 		await connection('classes').insert({class_id: newClass[0], class_name: newClass[1], class_module: newClass[2]})
-			.then(()=>{
-				connection('classes').select({class_id: newClass[0]});
-			}).then(() => {
+			.then(() => {
 				res.status(200).send({message: `Class ${newClass[1]} successful created with the following id: ${newClass[0]}`});
 			}).catch((error: any)=>{
 				throw error;

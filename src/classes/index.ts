@@ -21,7 +21,6 @@ export class Hobbies {
 	}
 }
 
-
 export class Student extends Hobbies {
 
 	constructor(private student_id: string, public name: string, private email: string, private birth_date: string, private class_id: string, hobbiesArray: string[]){
@@ -48,6 +47,7 @@ export class Specialties {
 		return this.specialties;	
 	}
 }
+
 export class Teacher extends Specialties {
 
 	constructor(private teacherId: string, public name: string, private email: string, private birthDate: string, private class_id: string, specialties: string[]){
