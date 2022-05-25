@@ -9,13 +9,12 @@ export default async function getStudentByName (
 	try {
 		const studentName = req.body.studentName;
 		if(!studentName) throw 'missingParamtersForStudentName';
-
-		await connection('students').select('*').where('student_name', '=', studentName)
+		await connection('students').select('*').where('student_name', 'LIKE', `%${studentName}%`)
 			.then((response: any) => {
-				if(!response[0]) throw 'emptyAnswer';
+				if(response.length === 0) throw 'emptyAnswer';
 				res.status(200).send({
 					message: 'Succesfull',
-					data: response[0]
+					data: response
 				});
 			});
 	} catch (error: any){

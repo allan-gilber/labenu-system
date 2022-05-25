@@ -1,5 +1,4 @@
 import { nanoid } from 'nanoid';
-import { Student } from '../../../classes';
 import connection from '../../../connection';
 
 async function transactionToCreateNewStudent (newStudent: string[]) {
@@ -10,7 +9,7 @@ async function transactionToCreateNewStudent (newStudent: string[]) {
 			student_name: newStudent[1],
 			student_email: newStudent[2],
 			student_birth_date: newStudent[3],
-			class_id: newStudent[4]
+			student_class_id: newStudent[4]
 		});
 
 		for(let index = 0; index < newStudent[5].length; index++){

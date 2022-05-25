@@ -1,11 +1,12 @@
 export class Class {
-	class_id: string;
-	name?: string;
-	module = '0';
 
-	constructor(class_id: string, name: string){
+	constructor(private class_id: string, private name: string, private module = '0'){
 		this.class_id = class_id;
 		this.name = name;
+	}
+
+	public getClassData(): string[]{
+		return [this.class_id, this.name, this.module];
 	}
 }
 
@@ -19,7 +20,6 @@ export class Hobbies {
 		return this.hobbiesArray;	
 	}
 }
-
 
 export class Student extends Hobbies {
 
@@ -47,6 +47,7 @@ export class Specialties {
 		return this.specialties;	
 	}
 }
+
 export class Teacher extends Specialties {
 
 	constructor(private teacherId: string, public name: string, private email: string, private birthDate: string, private class_id: string, specialties: string[]){

@@ -10,16 +10,18 @@ export default async function changeTeacherClass (
 	try {
 		const teacherId = req.params.teacherId;
 		const classId = req.body.classId;
+		let className: string;
 
 		if(!classId) throw 'invalidClassId';
 		if(!teacherId) throw 'invalidTeacherId';
 
 		await checkIfTeacherIdAndClassIdAreCorrect(teacherId, classId)
-			.then(async () =>{
+			.then(async (name) =>{
+				className = name;
 				await connection('teachers').where({'teacher_id': teacherId}).update({'teacher_class_id': classId});
 			})
 			.then(() => {
-				res.status(200).send({message: 'Teacher class successful changed.'});
+				res.status(200).send({message: `Teacher class successful changed to ${className}.`});
 			});
 	} catch (error: any){
 		console.log('changeTeacherClass error: ', error.message || error );

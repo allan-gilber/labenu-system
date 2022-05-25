@@ -1,3 +1,4 @@
+import { isValid } from 'date-fns';
 import { Request, Response } from 'express';
 import { nanoid } from 'nanoid';
 import { Teacher } from '../../classes';
@@ -11,23 +12,23 @@ export default async function createTeacher (
 	try {
 		const requisitionBody = req.body;
 
-		if(!requisitionBody.name || !requisitionBody.email || !requisitionBody.birthDate || !requisitionBody.classId || !requisitionBody.specialty) throw 'missingParamtersForTeacherForTeacherCreation';
+		if(!requisitionBody.name || !requisitionBody.email || !isValid(new Date(requisitionBody.birthDate)) || !requisitionBody.classId || requisitionBody.specialty.length === 0 || !Array.isArray(requisitionBody.specialty)) throw 'missingParamtersForTeacherForTeacherCreation';
 
 		const teacherId = nanoid();
 		const teacherData = new Teacher(teacherId, requisitionBody.name, requisitionBody.email, requisitionBody.birthDate, requisitionBody.classId, requisitionBody.specialty);
 
 		await transactionToCreateNewTeacher(teacherData)
 			.then(() => {
-				res.status(200).send({message: `Teacher ${teacherData.name} successful created`});
+				res.status(200).send({message: `Teacher ${teacherData.name} successful created with the following id: ${teacherId}`});
 			});
 	} catch (error: any){
 		console.log('createTeacher error: ', error.message || error);
 		if(error.code === 'ER_DUP_ENTRY'){
-			res.status(400).send({message: `createTeacher error: ${errorMessages('teacherEmailAlreadyRegistered')}`});
+			res.status(400).send({message: `createTeacher error: ${errorMessages('emailAlreadyRegistered')}`});
 			return;
 		}
 		if(error === 'missingParamtersForTeacherForTeacherCreation') {
-			res.status(400).send({message: `createTeacher error: ${errorMessages('emptyClassName')}`});
+			res.status(400).send({message: `createTeacher error: ${errorMessages('missingParamtersForTeacherForTeacherCreation')}`});
 			return;
 		}
 		res.status(500).send({message: `createTeacher error:  ${errorMessages('genericError')}`});

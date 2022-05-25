@@ -1,8 +1,9 @@
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import connection from '../../connection';
 import errorMessages from '../../utilities/errorMessages';
 
 export default async function getActiveClasses (
+	req: Request,
 	res: Response
 ): Promise<void> {
 	try {
